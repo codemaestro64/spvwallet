@@ -1,8 +1,8 @@
 package spvwallet
 
 import (
-	"github.com/OpenBazaar/wallet-interface"
 	"github.com/btcsuite/btcd/chaincfg"
+	"github.com/codemaestro64/wallet-interface"
 	"github.com/mitchellh/go-homedir"
 	"github.com/op/go-logging"
 	"golang.org/x/net/proxy"

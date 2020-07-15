@@ -11,7 +11,6 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/OpenBazaar/wallet-interface"
 	"github.com/btcsuite/btcd/blockchain"
 	"github.com/btcsuite/btcd/btcec"
 	"github.com/btcsuite/btcd/chaincfg/chainhash"
@@ -23,6 +22,7 @@ import (
 	"github.com/btcsuite/btcutil/txsort"
 	"github.com/btcsuite/btcwallet/wallet/txauthor"
 	"github.com/btcsuite/btcwallet/wallet/txrules"
+	"github.com/codemaestro64/wallet-interface"
 )
 
 func (s *SPVWallet) Broadcast(tx *wire.MsgTx) error {
@@ -204,7 +204,7 @@ func (w *SPVWallet) BumpFee(txid chainhash.Hash) (*chainhash.Hash, error) {
 				LinkedAddress: addr,
 				OutpointIndex: u.Op.Index,
 				OutpointHash:  h,
-				Value:         u.Value,
+				Value:         int64(u.Value),
 			}
 			transactionID, err := w.SweepAddress([]wallet.TransactionInput{in}, nil, key, nil, wallet.FEE_BUMP)
 			if err != nil {
@@ -618,7 +618,7 @@ func (w *SPVWallet) buildTx(amount int64, addr btc.Address, feeLevel wallet.FeeL
 		coinSelector := coinset.MaxValueAgeCoinSelector{MaxInputs: 10000, MinChangeAmount: btc.Amount(0)}
 		coins, err := coinSelector.CoinSelect(target, coins)
 		if err != nil {
-			return total, inputs, []btc.Amount{}, scripts, wallet.ErrorInsuffientFunds
+			return total, inputs, []btc.Amount{}, scripts, wallet.ErrInsufficientFunds
 		}
 		additionalPrevScripts = make(map[wire.OutPoint][]byte)
 		additionalKeysByAddress = make(map[string]*btc.WIF)

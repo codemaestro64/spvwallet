@@ -7,7 +7,6 @@ import (
 	"sync"
 	"time"
 
-	"github.com/OpenBazaar/wallet-interface"
 	"github.com/btcsuite/btcd/btcec"
 	"github.com/btcsuite/btcd/chaincfg"
 	"github.com/btcsuite/btcd/chaincfg/chainhash"
@@ -17,6 +16,7 @@ import (
 	btc "github.com/btcsuite/btcutil"
 	hd "github.com/btcsuite/btcutil/hdkeychain"
 	"github.com/btcsuite/btcwallet/wallet/txrules"
+	"github.com/codemaestro64/wallet-interface"
 	"github.com/op/go-logging"
 	b39 "github.com/tyler-smith/go-bip39"
 

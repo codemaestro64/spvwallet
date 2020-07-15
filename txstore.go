@@ -5,8 +5,8 @@ package spvwallet
 
 import (
 	"bytes"
+	"strconv"
 	"errors"
-	"github.com/OpenBazaar/wallet-interface"
 	"github.com/btcsuite/btcd/blockchain"
 	"github.com/btcsuite/btcd/chaincfg"
 	"github.com/btcsuite/btcd/chaincfg/chainhash"
@@ -14,6 +14,7 @@ import (
 	"github.com/btcsuite/btcd/wire"
 	"github.com/btcsuite/btcutil"
 	"github.com/btcsuite/btcutil/bloom"
+	"github.com/codemaestro64/wallet-interface"
 	"sync"
 	"time"
 )
@@ -366,7 +367,7 @@ func (ts *TxStore) Ingest(tx *wire.MsgTx, height int32, timestamp time.Time) (ui
 			shouldCallback = true
 			var buf bytes.Buffer
 			tx.BtcEncode(&buf, wire.ProtocolVersion, wire.WitnessEncoding)
-			ts.Txns().Put(buf.Bytes(), tx.TxHash().String(), int(value), int(height), txn.Timestamp, hits == 0)
+			ts.Txns().Put(buf.Bytes(), tx.TxHash().String(), strconv.Itoa(int(value)), int(height), txn.Timestamp, hits == 0)
 			ts.txids[tx.TxHash().String()] = height
 		}
 		// Let's check the height before committing so we don't allow rogue peers to send us a lose
