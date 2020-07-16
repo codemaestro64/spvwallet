@@ -11,7 +11,7 @@ require (
 	github.com/btcsuite/btcwallet/wallet/txrules v1.0.0
 	github.com/btcsuite/goleveldb v1.0.0
 	github.com/cevaris/ordered_map v0.0.0-20190319150403-3adeae072e73
-	github.com/codemaestro64/wallet-interface v0.0.0-20200511225204-f14dd43579f0
+	github.com/codemaestro64/wallet-interface v0.0.0-20200715162953-79cb1d8e28d7
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/op/go-logging v0.0.0-20160315200505-970db520ece7
 	github.com/tyler-smith/go-bip39 v1.0.2
